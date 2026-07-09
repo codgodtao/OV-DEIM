@@ -116,6 +116,7 @@ dmypy.json
 *.hdf5
 *.pkl
 *.pickle
+*.onnx
 
 # Data files (be careful with this - uncomment if you have large datasets)
 data/

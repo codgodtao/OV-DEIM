@@ -18,8 +18,9 @@ Real-time open-vocabulary object detection faces two key challenges: achieving h
 ## Table of Content
 * [1. Performance](#performance)
 * [2. Quick Start](#2-quick-start)
-* [3. Acknowledgement](#3-acknowledgement)
-* [4. Citation](#4-citation)
+* [3. ONNX Deployment](#3-onnx-deployment)
+* [4. Acknowledgement](#4-acknowledgement)
+* [5. Citation](#5-citation)
 
 ## 1. Performance 
 ### Zero-shot detection evaluation on LVIS
@@ -98,11 +99,36 @@ torchrun \
       --alpha 0.5 \
 ```
 
-## 3. Acknowledgement
+## 3. ONNX Deployment
+
+OV-DEIM supports exporting to ONNX format for deployment with ONNX Runtime, TensorRT, OpenVINO, etc.
+
+### Export to ONNX
+
+```bash
+python export_onnx.py \
+    --config base_l \
+    --checkpoint weights/ovdeim_l.pth \
+    --output weights/ovdeim_l.onnx
+```
+
+Available configs: `base_l/m/s` (LVIS open-vocabulary), `coco_l/m/s` (COCO).
+
+### Usage
+
+See [docs/ONNX_USAGE.md](docs/ONNX_USAGE.md) for the complete guide, including:
+- Image preprocessing (letterbox + ImageNet normalization)
+- Text feature extraction with MobileCLIP
+- ONNX inference example
+- Detection box post-processing (coordinate restoration to original image)
+- TensorRT conversion and performance optimization
+
+
+## 4. Acknowledgement
 The code base is built with [YOLO-World](https://github.com/AILab-CVC/YOLO-World), [YOLOE](https://github.com/THU-MIG/yoloe), [MobileCLIP](https://github.com/apple/ml-mobileclip), [RT-DETR](https://github.com/lyuwenyu/RT-DETR), [DINOv3](https://github.com/facebookresearch/dinov3) and [DEIMv2](https://github.com/Intellindust-AI-Lab/DEIMv2).
 
 
-## 4. Citation
+## 5. Citation
 
 ```
 @misc{wang2026ovdeim,
